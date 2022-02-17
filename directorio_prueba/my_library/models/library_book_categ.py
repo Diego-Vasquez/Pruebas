@@ -16,6 +16,7 @@ class BookCategory(models.Model):
     parent_path = fields.Char(index=True)
     email = fields.Char('email')
 
+
     @api.constrains('parent_id')
     def _check_hierarchy(self):
         if not self._check_recursion():

@@ -50,7 +50,7 @@
             <button name="log_all_library_members" string="Log Members" type="object"/>
             <button name="change_release_date" string="Update Date" type="object"/>
             <button name="find_book" string="Search" type="object"/>
-            <button name="prueba_2" string="Prueba N2" type="object"/>
+
         </form>
         </field>
     </record>
@@ -68,6 +68,19 @@
                 <field name="out_of_print"/>
                 <field name="date_updated"/>
             </tree>
+        </field>
+    </record>
+
+
+    <record id="library_book_view_search" model="ir.ui.view">
+        <field name="name">Library Book Search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="author_ids"/>
+                <filter string="Without Authors" name="without_author" domain="[('author_ids','=',False)]"/>
+            </search>
         </field>
     </record>
 
