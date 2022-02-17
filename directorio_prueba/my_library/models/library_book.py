@@ -12,7 +12,7 @@ class LibraryBook(models.Model):
     active = fields.Boolean(default=True)
     name = fields.Char('Title of Book', required=True)
     lastname = fields.Char('Lastname')
-    short_name = fields.Char('Short Title', required=True)
+    short_name = fields.Char('Short Title', required=False)
     date_release = fields.Date('Release Date')
     date_updated = fields.Datetime('Last Updated')
     out_of_print = fields.Boolean('Out of Print?')

@@ -15,7 +15,7 @@
             'data/data.xml',
             'data/demo.xml',
              ],
-
+    'post_init_hook': 'add_book_hook',
     'demo': [
             'data/demo.xml',
             ],
