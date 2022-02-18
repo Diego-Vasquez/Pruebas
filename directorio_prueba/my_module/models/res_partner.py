@@ -5,3 +5,6 @@ class ResPartner(models.Model):
 
     write_date=fields.Date("Fecha")
 
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+    date_local = fields.Datetime(string='Fecha Local')

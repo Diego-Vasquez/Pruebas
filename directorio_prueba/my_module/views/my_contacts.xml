@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <act_window
+    <!--act_window
     id="action_all_customers"
     name="All customers"
     res_model="res.partner"
     view_mode="tree,form"
     domain="[('customer_rank', '>', 0)]"
     context="{'default_customer_rank': 1}"
-    limit="20"/>
+    limit="20"/-->
 
     <!--record id='action_all_customers' model='ir.actions.act_window'>
     <field name="name">All customers</field>
@@ -39,7 +39,7 @@
         </field>
     </record>
 
-    <record id='action_all_contacts' model='ir.actions.act_window'>
+    <!--record id='action_all_contacts' model='ir.actions.act_window'>
         <field name="name">All Contacts</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
@@ -48,15 +48,14 @@
         <field name="limit">20</field>
     </record>
 
-    <menuitem id="menu_custom_top_level" name="My App menu" web_icon="my_module,static/description/icon.png"/>
-    <menuitem id="menu_all_contacts" parent="menu_custom_top_level" action="action_all_contacts" sequence="10" groups="" />
 
-    <menuitem id="menu_custom_top_level" name="My App menu" web_icon="my_module,static/description/icon.png"/>
-    <menuitem id="menu_all_customers" parent="menu_custom_top_level" action="action_all_customers" sequence="10" groups="" />
-    <menuitem id="menu_all_customers_fr" parent="menu_custom_top_level" action="action_all_customers_fr" sequence="10" groups="" />
-
-    <menuitem id="menu_my_customers" parent="menu_custom_top_level" action="action_my_customers" sequence="9" />
-    <menuitem id="menu_no_email_or_phone" parent="menu_custom_top_level" action="action_no_email_or_phone" sequence="10" />
+    <menuitem id="menu_all_contacts" parent="menu_custom_top_level" action="action_all_contacts" sequence="10" groups="" /-->
+    <!--record id="action_all_customers_form" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="action_all_customers" />
+        <field name="view_id" ref="view_all_customers_form" />
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="2"/>
+    </record-->
 
     <record id="action_my_customers" model="ir.actions.act_window">
         <field name="name">
@@ -76,6 +75,17 @@
         </field>
     </record>
 
+
+    <menuitem id="menu_custom_top_level" name="My App menu" web_icon="my_module,static/description/icon.png"/>
+    <menuitem id="menu_all_customers" parent="menu_custom_top_level" action="action_all_customers" sequence="10" groups="" />
+    <menuitem id="menu_all_customers_fr" parent="menu_custom_top_level" action="action_all_customers_fr" sequence="10" groups="" />
+
+    <menuitem id="menu_my_customers" parent="menu_custom_top_level" action="action_my_customers" sequence="9" />
+    <menuitem id="menu_no_email_or_phone" parent="menu_custom_top_level" action="action_no_email_or_phone" sequence="10" />
+
+
+
+
     <record id="view_all_customers_tree" model="ir.ui.view">
         <field name="name">All customers</field>
         <field name="model">res.partner</field>
@@ -93,13 +103,6 @@
         <field name="sequence" eval="1"/>
     </record>
 
-    <record id="action_all_customers_form" model="ir.actions.act_window.view">
-        <field name="act_window_id" ref="action_all_customers" />
-        <field name="view_id" ref="view_all_customers_form" />
-        <field name="view_mode">form</field>
-        <field name="sequence" eval="2"/>
-    </record>
-
     <record id="view_all_customers_form" model="ir.ui.view">
         <field name="name">All customers</field>
         <field name="model">res.partner</field>
@@ -112,38 +115,73 @@
                 <button type="action" name="%(base.action_partner_category_form)d" string="Open partner categories" />
             </header>
 
-             <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button type="object" class="oe_stat_button" icon="fa-pencil-square-o" name="action_view_partner_invoices">
-                            <div class="o_form_field o_stat_info">
-                                <span class="o_stat_value">
-                                    <field name="total_invoiced"/>
-                                </span>
-                                <span class="o_stat_text">Invoiced</span>
-                            </div>
-                        </button>
-                    </div>
-                    <div class="oe_left oe_title">
-                        <label for="name" />
-                        <h1>
-                            <field name="name" />
-                        </h1>
-                    </div>
-                    <group>
-                        <field name="category_id" widget="many2many_tags" />
-                        <field name="email"/>
-                        <field name="mobile"/>
-                    </group>
-                </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"/>
-                    <field name="activity_ids" widget="mail_activity"/>
-                    <field name="message_ids" widget="mail_thread"/>
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button type="object" class="oe_stat_button" icon="fa-pencil-square-o" name="action_view_partner_invoices">
+                        <div class="o_form_field o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="total_invoiced"/>
+                            </span>
+                            <span class="o_stat_text">Invoiced</span>
+                        </div>
+                    </button>
                 </div>
-                <group string="Content" name="my_content">
-                    <field name="name" />
+                <div class="oe_left oe_title">
+                    <label for="name" />
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <field name="parent_id" attrs="{
+                        'invisible': [('is_company', '=', True)],
+                        'required': [('is_company', '=', False)]
+                    }" />
+                </div>
+                <group>
+                    <field name="is_company"/>
                     <field name="category_id" widget="many2many_tags" />
+                    <field name="email"/>
+                    <field name="mobile"/>
                 </group>
+                <group>
+                    <field name="child_ids">
+                        <tree>
+                            <field name="name" />
+                            <field name="email" />
+                            <field name="phone" />
+                        </tree>
+                        <form>
+                            <group>
+                                <field name="name" />
+                                <field name="function" />
+                            </group>
+                        </form>
+                    </field>
+                </group>
+            </sheet>
+
+                <sheet>
+                <group>
+                    <field name="name" />
+                    <field name="email"/>
+                </group>
+            </sheet>
+            <div class="o_attachment_preview"
+            options="{types: ['image', 'pdf'], 'order':'desc'}" />
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+            <group string="Content" name="my_content">
+                <field name="name" />
+                <field name="category_id" widget="many2many_tags" />
+            </group>
 
             </form>
         </field>
@@ -210,4 +248,17 @@
             </field>
         </field>
     </record>
+
+    <record id="view_order_form_inherit_my_module" model="ir.ui.view">
+        <field name="name">view.order.form.view.inherit.my.module</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="date_local"/>
+            </xpath>
+        </field>
+    </record>
+
+
 </odoo>
