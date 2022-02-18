@@ -24,6 +24,9 @@ class LibraryBook(models.Model):
         string='Authors'
     )
 
+    #is_public = fields.Boolean(groups='my_library.group_library_librarian')
+    #private_notes = fields.Text(groups='my_library.group_library_librarian')
+
     def book_rent(self):
         self.ensure_one()
 

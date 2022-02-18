@@ -4,7 +4,7 @@
     'author': "DiegoV",
     'category': 'Uncategorized',
     'version': '14.0.1',
-    'depends': ['base', 'account', 'sale', 'project'
+    'depends': ['base', 'account', 'sale', #'project'
                 ],
     'data': [
         'views/my_contacts.xml',
