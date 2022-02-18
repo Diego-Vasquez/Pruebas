@@ -180,13 +180,14 @@
         <field name="limit">20</field>
     </record>
 
-    <record id="view_partner_form_inherit" model="ir.ui.view">
+    <record id="view_partner_form_inherit_my_module" model="ir.ui.view">
+        <field name="name">res.partner.form.view.inherit.my.module</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-            <field name="website" position="after">
+            <xpath expr="//field[@name='email']" position="after">
                 <field name="write_date" />
-            </field>
+            </xpath>
         </field>
     </record>
 
