@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo>
     <record model="ir.rule" id="library_book_user_rule">
         <field name="name">Library: see only own books</field>
         <field name="model_id" ref="model_library_book"/>
