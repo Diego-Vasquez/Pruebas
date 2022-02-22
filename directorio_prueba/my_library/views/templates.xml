@@ -1,11 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <template id="assets_frontend" inherit_id="web.assets_frontend">
-        <xpath expr="." position="inside">
-            <link href="/my_library/static/src/css/my_library.css" rel="stylesheet" type="text/css"/>
-            <link href="/my_library/static/src/scss/my_library.scss" rel="stylesheet" type="text/scss"/>
 
-            <script src="/my_library/static/src/js/my_library.js" type="text/javascript" />
+    <template id="assets_end" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script src="/my_library/static/src/js/field_widget.js" type="text/javascript" />
+            <link href="/my_library/static/src/scss/field_widget.scss" rel="stylesheet" type="text/scss" />
         </xpath>
     </template>
+
+    <template id="qunit_suite" name="colorpicker test" inherit_id="web.qunit_suite">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/my_library/static/tests/colorpicker_tests.js" />
+        </xpath>
+    </template>
+
 </odoo>
