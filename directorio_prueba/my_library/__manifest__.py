@@ -1,27 +1,30 @@
-# -*- coding: utf-8 -*-
 {
-        'name': "My Library",  # Module title
-    'summary': "Manage books easily",  # Module subtitle phrase
+    'name': 'My Library',
+    'summary': "Manage books easily",
     'description': """
-Manage Library
-==============
-Description related to library.
-    """,  # Supports reStructuredText(RST) format
-    'author': "Parth Gajjar",
-    'website': "http://www.example.com",
-    'category': 'Tools',
-    'version': '14.0.1',
-    'depends': ['base', 'web'],
-
-    'data': [
-        'security/groups.xml',
-        'security/ir.model.access.csv',
-        'views/library_book.xml',
-        'views/templates.xml'
+    Libreria de prueba
+    """,
+    'author': "DiegoV",
+    'depends': ['base', 'contacts','website','web'],
+    'data': ['security/groups.xml',
+            'security/ir.model.access.csv',
+            'security/security_rules.xml',
+            'views/library_book.xml',
+            'views/library_book_rent.xml',
+            'views/library_rent_wizard.xml',
+            'views/library_book_return_wizard.xml',
+            'views/templates.xml',
+            'data/data.xml',
+            'data/demo.xml',
+            'reports/book_rent_report.xml',
+            'reports/book_rent_templates.xml',
+             ],
+    'post_init_hook': 'add_book_hook',
+    'demo': [
+            'data/demo.xml',
+            ],
+    "qweb": [
+            'static/src/xml/qweb_template.xml',
     ],
-    # This demo data files will be loaded if db initialize with demo data (commented becaues file is not added in this example)
-    # 'demo': [
-    #     'demo.xml'
-    # ],
-}
 
+ }

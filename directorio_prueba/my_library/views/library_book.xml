@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <menuitem name="My Library" id="library_base_menu" />
 
     <record id='library_book_action' model='ir.actions.act_window'>
         <field name="name">Library Books</field>
@@ -7,49 +8,71 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="My Library" id="library_base_menu" />
-    <menuitem name="Books" id="library_book_menu" parent="library_base_menu" action="library_book_action"/>
+    <menuitem name="Books" id="library_book_menu"
+    parent="library_base_menu" action="library_book_action"/>
 
-    <!-- Form View -->
     <record id="library_book_view_form" model="ir.ui.view">
         <field name="name">Library Book Form</field>
         <field name="model">library.book</field>
         <field name="arch" type="xml">
-            <form>
-                <header>
-                    <button name="make_available" string="Make Available" type="object"/>
-                    <button name="make_lost" string="Make Lost" type="object"/>
-                    <field name="state" widget="statusbar"/>
-                </header>
-                <sheet>
-                    <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="author_ids" widget="many2many_tags"/>
-                        </group>
-                        <group>
-                            <field name="date_release"/>
-                            <field name="color" widget="int_color"/>
-                        </group>
-                    </group>
-                </sheet>
-            </form>
+        <form>
+            <group>
+                <group>
+                    <field name="short_name"/>
+                    <field name="name"/>
+                    <field name="lastname"/>
+                    <field name="author_ids"
+                    widget="many2many_tags"/>
+                    <field name="num_1"/>
+                    <field name="num_2"/>
+                    <field name="num_3"/>
+                    <field name="manager_remarks"/>
+                    <field name="color" widget="int_color"/>
+                </group>
+                <group>
+                    <field name="date_release"/>
+                    <field name="state"/>
+                    <field name="out_of_print"/>
+                    <field name="indicador"/>
+                    <field name="date_updated"/>
+                    <field name="cost_price"/>
+
+                </group>
+            </group>
+
+            <button name="make_available" string="Make Available"
+            type="object"/>
+            <button name="make_borrowed" string="Make Borrowed"
+            type="object"/>
+            <button name="make_lost" string="Make Lost"
+            type="object"/>
+            <field name="state" widget="statusbar"/>
+
+            <button name="log_all_library_members" string="Log Members" type="object"/>
+            <button name="change_release_date" string="Update Date" type="object"/>
+            <button name="find_book" string="Search" type="object"/>
+
+        </form>
         </field>
     </record>
 
-    <!-- Tree(list) View -->
     <record id="library_book_view_tree" model="ir.ui.view">
         <field name="name">Library Book List</field>
         <field name="model">library.book</field>
         <field name="arch" type="xml">
+
             <tree>
+                <field name="short_name"/>
                 <field name="name"/>
                 <field name="date_release"/>
+
+                <field name="out_of_print"/>
+                <field name="date_updated"/>
             </tree>
         </field>
     </record>
 
-    <!-- Search View -->
+
     <record id="library_book_view_search" model="ir.ui.view">
         <field name="name">Library Book Search</field>
         <field name="model">library.book</field>
@@ -62,4 +85,115 @@
         </field>
     </record>
 
+    <record id='library_book2_action' model='ir.actions.act_window'>
+        <field name="name">Library Books2</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Books2" id="library_book_menu2"
+    parent="library_base_menu" action="library_book2_action"/>
+
+    <record id="library_book2_view_form" model="ir.ui.view">
+        <field name="name">Library Book2 Form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+        <form>
+            <group>
+                <group>
+                    <field name="short_name"/>
+                    <field name="name"/>
+                    <field name="lastname"/>
+                    <field name="author_ids"
+                    widget="many2many_tags"/>
+                    <field name="num_1"/>
+                    <field name="num_2"/>
+                    <field name="num_3"/>
+                </group>
+                <group>
+                    <field name="date_release"/>
+                    <field name="state"/>
+                    <field name="out_of_print"/>
+                    <field name="indicador"/>
+                    <field name="date_updated"/>
+                    <field name="cost_price"/>
+
+                </group>
+            </group>
+
+            <button name="make_available" string="Make Available"
+            type="object"/>
+            <button name="make_borrowed" string="Make Borrowed"
+            type="object"/>
+            <button name="make_lost" string="Make Lost"
+            type="object"/>
+            <field name="state" widget="statusbar"/>
+
+            <button name="log_all_library_members" string="Log Members" type="object"/>
+            <button name="change_release_date" string="Update Date" type="object"/>
+            <button name="find_book" string="Search" type="object"/>
+
+
+        </form>
+        </field>
+    </record>
+
+    <record id="library_book2_view_tree" model="ir.ui.view">
+        <field name="name">Library Book2 List</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="short_name"/>
+                <field name="name"/>
+                <field name="date_release"/>
+
+                <field name="out_of_print"/>
+                <field name="date_updated"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='library_book_category_act' model='ir.actions.act_window'>
+        <field name="name">Library Books Category</field>
+        <field name="res_model">library.book.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Category" id="library_book_category"
+    parent="library_base_menu" action="library_book_category_act"/>
+
+    <record id="library_book_cat_view_form" model="ir.ui.view">
+        <field name="name">Library Book Category Form</field>
+        <field name="model">library.book.category</field>
+        <field name="arch" type="xml">
+        <form>
+            <group>
+                <group>
+
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="parent_id"
+                    widget="many2one_tags"/>
+                </group>
+                <group>
+                    <field name="child_ids"
+                    widget="one2may_tags"/>
+                </group>
+            </group>
+            <button name="create_categories" string="Create Categories" type="object"/>
+        </form>
+        </field>
+    </record>
+
+    <record id="library_book_cat_view_tree" model="ir.ui.view">
+        <field name="name">Library Book Category List</field>
+        <field name="model">library.book.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
 </odoo>

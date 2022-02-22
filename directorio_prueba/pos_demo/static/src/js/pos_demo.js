@@ -1,0 +1,1 @@
+console.log('Point of Sale JavaScript loaded');
